@@ -1,7 +1,7 @@
 import './App.css';
 import Navigation from './components/navigation/nav';
 import Logo1 from './components/logo/logo1';
-import Image_link_form from './components/form/form';
+import ImageLinkForm from './components/form/form';
 import Rank from './components/rank/rank';
 import React, { Component } from 'react';
 import ParticlesBg from 'particles-bg';
@@ -9,24 +9,25 @@ import FaceRecognition1 from './components/faceRecognition/faceRecognition1.jsx'
 import SignIn from './components/signIn/signIn.jsx';
 import Register from './components/register/register.jsx';
 
+const initialState = {
+  input:'',
+  imageurl:'',
+  box:{},
+  route: 'signin',
+  isSignedIn: false,
+  user: {
+    id: '',
+    name: '',
+    email: '',
+    entries: 0,
+    joined: ''
+}};
+
 class App extends Component {
   constructor(){
     super();
-    this.state = {
-      input:'',
-      imageurl:'',
-      box:{},
-      route: 'signin',
-      isSignedIn: false,
-      user: {
-        id: '',
-        name: '',
-        email: '',
-        entries: 0,
-        joined: ''
-      }
+    this.state = initialState;
     }
-  }
 
   loadUser = (data)=>{
     this.setState({user: {
@@ -71,7 +72,6 @@ class App extends Component {
                   "data": {
                       "image": {
                           "url": IMAGE_URL
-                          // "base64": IMAGE_BYTES_STRING
                       }
                   }
               }
@@ -96,7 +96,7 @@ class App extends Component {
 
   onButtonSubmit = () => {
     this.setState({imageurl: this.state.input});
-    fetch("https://api.clarifai.com/v2/models/" + 'face-detection' + "/outputs", this.setupclarify(this.state.input))
+    fetch("https://api.clarifai.com/v2/models/face-detection/outputs", this.setupclarify(this.state.input))
     .then(response => response.json())
     .then(result => {
 
@@ -114,7 +114,7 @@ class App extends Component {
               if (entries){
                   this.setState({ user: { ...this.state.user, entries } });
               }
-          })
+          }).catch(console.log)
         regions.forEach(region => {
             // Accessing and rounding the bounding box values
             const boundingBox = region.region_info.bounding_box;
@@ -124,7 +124,6 @@ class App extends Component {
             const rightCol = boundingBox.right_col.toFixed(3);
 
             region.data.concepts.forEach(concept => {
-                // Accessing and rounding the concept value
                 const name = concept.name;
                 const value = concept.value.toFixed(4);
 
@@ -145,12 +144,12 @@ class App extends Component {
 
   onroutechange = (route) => {
     if(route === 'signin'){
-      this.setState({isSignedIn: false})
+      this.setState(initialState)
     } else if (route === 'home'){
       this.setState({isSignedIn: true})
     }
     this.setState({route: route})
-  }
+  };
 
   render() {
     const {isSignedIn, imageurl, route, box} = this.state
@@ -169,7 +168,7 @@ class App extends Component {
         </>
         :<><Logo1 />
         <Rank info={this.state.user}/>
-        <Image_link_form onchange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/> {/* Corrected prop name */}
+        <ImageLinkForm onchange={this.onInputChange} onButtonSubmit={this.onButtonSubmit}/> {/* Corrected prop name */}
         <FaceRecognition1 imageurl={imageurl} box={box}/>
         <ParticlesBg type="cobweb" bg={true} className='particles' />
         </>)
