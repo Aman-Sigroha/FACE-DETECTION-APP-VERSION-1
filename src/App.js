@@ -105,7 +105,7 @@ class App extends Component {
 
         if(regions.length > 0){
 
-          fetch('http://localhost:3001/image',{
+          fetch('https://face-detection-api-version-1.onrender.com/image',{
             method: 'put',
             headers: {'Content-Type': 'application/json'},
             body: JSON.stringify({ id: this.state.user.id})
