@@ -1,16 +1,16 @@
 {
   "files": {
     "main.css": "/FACE-DETECTION-APP-VERSION-1/static/css/main.59061063.css",
-    "main.js": "/FACE-DETECTION-APP-VERSION-1/static/js/main.84e3444d.js",
+    "main.js": "/FACE-DETECTION-APP-VERSION-1/static/js/main.09bf7a55.js",
     "static/js/453.e8800af4.chunk.js": "/FACE-DETECTION-APP-VERSION-1/static/js/453.e8800af4.chunk.js",
     "static/media/face-id_2061822.png": "/FACE-DETECTION-APP-VERSION-1/static/media/face-id_2061822.7909d80af7747cf42126.png",
     "index.html": "/FACE-DETECTION-APP-VERSION-1/index.html",
     "main.59061063.css.map": "/FACE-DETECTION-APP-VERSION-1/static/css/main.59061063.css.map",
-    "main.84e3444d.js.map": "/FACE-DETECTION-APP-VERSION-1/static/js/main.84e3444d.js.map",
+    "main.09bf7a55.js.map": "/FACE-DETECTION-APP-VERSION-1/static/js/main.09bf7a55.js.map",
     "453.e8800af4.chunk.js.map": "/FACE-DETECTION-APP-VERSION-1/static/js/453.e8800af4.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.59061063.css",
-    "static/js/main.84e3444d.js"
+    "static/js/main.09bf7a55.js"
   ]
 }
